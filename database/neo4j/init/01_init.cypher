@@ -1,6 +1,3 @@
--- Neo4j Cypher Initialization Script
--- AI-Assisted Knowledge Work Platform Knowledge Graph
-
 // Create constraints and indexes
 CREATE CONSTRAINT user_id_unique IF NOT EXISTS FOR (u:User) REQUIRE u.id IS UNIQUE;
 CREATE CONSTRAINT organization_id_unique IF NOT EXISTS FOR (o:Organization) REQUIRE o.id IS UNIQUE;
