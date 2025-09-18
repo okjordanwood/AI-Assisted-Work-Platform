@@ -1,5 +1,4 @@
 -- PostgreSQL Database Initialization Script
--- AI-Assisted Knowledge Work Platform
 
 -- Enable required extensions
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
