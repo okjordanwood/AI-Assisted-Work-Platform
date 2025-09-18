@@ -32,9 +32,14 @@ async def test_postgresql_operations(db_manager):
             print("pgvector extension is not installed")
 
         # Test custom types
-        result = await db_manager.postgres.execute_one("SELECT enumlabel FROM pg_enum WHERE enumtypid = (SELECT oid FROM pg_type WHERE typname = 'user_role')")
+        result = await db_manager.postgres.execute_one(
+            "SELECT enumlabel FROM pg_enum WHERE enumtypid = (SELECT oid FROM pg_type WHERE typname = 'user_role')"
+        )
+
         if result:
-            print(f"Custom types created: {[row['enumlabel'] for row in await db_manager.postgres.execute_query('SELECT enumlabel FROM pg_enum WHERE enumtypid = (SELECT oid FROM pg_type WHERE typname = \'user_role\')')]}")
+            query = "SELECT enumlabel FROM pg_enum WHERE enumtypid = (SELECT oid FROM pg_type WHERE typname = 'user_role')"
+            rows = await db_manager.postgres.execute_query(query)
+            print(f"Custom types created: {[row['enumlabel'] for row in rows]}")
 
         # Test tables exist
         tables = await db_manager.postgres.execute_query("""
